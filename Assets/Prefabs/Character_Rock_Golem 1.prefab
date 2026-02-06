@@ -1918,6 +1918,8 @@ GameObject:
   - component: {fileID: 9588672}
   - component: {fileID: 5849419878307447444}
   - component: {fileID: 7281040248701624068}
+  - component: {fileID: 4469410539814924155}
+  - component: {fileID: 4884088163926420487}
   m_Layer: 0
   m_Name: Character_Rock_Golem 1
   m_TagString: Untagged
@@ -2024,6 +2026,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4469410539814924155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5396be9a66a5594428de20bc799cc478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  anim: {fileID: 0}
+  state: 0
+--- !u!114 &4884088163926420487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7c56f6e2cb64643a53180048199607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharAnimation
 --- !u!1 &141464
 GameObject:
   m_ObjectHideFlags: 0
