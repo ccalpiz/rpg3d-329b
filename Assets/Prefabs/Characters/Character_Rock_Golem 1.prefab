@@ -1921,6 +1921,7 @@ GameObject:
   - component: {fileID: 7281040248701624068}
   - component: {fileID: 4469410539814924155}
   - component: {fileID: 4884088163926420487}
+  - component: {fileID: -9149597574521008085}
   m_Layer: 6
   m_Name: Character_Rock_Golem 1
   m_TagString: Untagged
@@ -2043,6 +2044,13 @@ MonoBehaviour:
   anim: {fileID: 0}
   state: 0
   ringSelection: {fileID: 3344709554874350182}
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackDamage: 3
+  attackCoolDown: 2
+  attackTimer: 0
+  findingRange: 20
 --- !u!114 &4884088163926420487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,6 +2063,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7c56f6e2cb64643a53180048199607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharAnimation
+--- !u!114 &-9149597574521008085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef6708bcc570b34f8f6d8987bede056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &141464
 GameObject:
   m_ObjectHideFlags: 0

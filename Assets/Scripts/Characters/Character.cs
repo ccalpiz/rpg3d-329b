@@ -1,11 +1,15 @@
 using JetBrains.Annotations;
+using UnityEditor.AdaptivePerformance.Editor;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
 
 public enum CharState
 {
     Idle,
     Walk,
+    WalkToEnemy,
     Attack,
     Hit,
     Die
@@ -26,6 +30,31 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected GameObject ringSelection;
     public GameObject RingSelection { get { return ringSelection; } }
+
+    [SerializeField]
+    protected int curHP = 10;
+    public int CurHp { get { return curHP; } }
+
+    [SerializeField]
+    protected Character curCharTarget;
+    public Character CurCharTarget { get { return curCharTarget; } set { CurCharTarget = value; } }
+
+    [SerializeField]
+    protected float attackRange = 2f;
+    public float AttackRange { get { return attackRange; } }
+
+    [SerializeField]
+    protected int attackDamage = 3;
+
+    [SerializeField]
+    protected float attackCoolDown = 2f;
+
+    [SerializeField]
+    protected float attackTimer = 0f;
+
+    [SerializeField]
+    protected float findingRange = 20f;
+    public float FindingRange { get { return findingRange; } }
 
     private void Awake()
     {
@@ -69,11 +98,137 @@ public abstract class Character : MonoBehaviour
         ringSelection.SetActive(flag);
     }
 
+    // move to attack an enemy character
+    public void ToAttackCharacter(Character target)
+    {
+        if (curHP <= 0 || state == CharState.Die)
+            return;
+
+        //lock target
+        curCharTarget = target;
+
+        //start walking to enemy
+        navAgent.SetDestination(target.transform.position);
+        navAgent.isStopped = false ;
+
+        SetState(CharState.WalkToEnemy);
+    }
+    
+    public void WalkToEnemyUpdate()
+    {
+        if (curCharTarget == null)
+        {
+            SetState(CharState.Idle);
+            return;
+        }
+
+        navAgent.SetDestination(curCharTarget.transform.position);
+
+        float distance = Vector3.Distance(transform.position, curCharTarget.transform.position);
+
+        if (distance <= attackRange)
+        {
+            SetState(CharState.Attack);
+            Attack(); //First Attack
+        }
+    }
+
+    public void ReceiveDamage(Character enemy)
+    {
+        if (curHP <= 0 || state == CharState.Die)
+            return;
+
+        curHP -= enemy.attackDamage;
+        if (curHP <= 0)
+        {
+            curHP = 0;
+            Die();
+        }
+    }
+
+    public bool IsMyEnemy(string targetTag)
+    {
+        string myTag = gameObject.tag;
+
+        if ((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
+            return true;
+
+        if (myTag == "Enemy" && (targetTag == "Hero" || targetTag == "Player"))
+            return true;
+
+        return false;
+    }
+
+    protected void AttackLogic()
+    {
+        Character target  = curCharTarget.GetComponent<Character>();
+
+        if (target != null)
+            target.ReceiveDamage(this);
+    }
+
+    protected void Attack()
+    {
+        transform.LookAt(curCharTarget.transform);
+
+        anim.SetTrigger("Attack");
+
+        //attack logic
+        AttackLogic();
+    }
+
+    protected void AttackUpdate()
+    {
+        if (curCharTarget == null)
+            return;
+
+        if (curCharTarget.CurHp <= 0)
+        {
+            SetState(CharState.Idle);
+            return;
+        }
+        navAgent.isStopped = true ;
+
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackCoolDown)
+        {
+            attackTimer = 0f;
+            Attack();
+        }
+
+        float distance = Vector3.Distance(transform.position, curCharTarget.transform.position);
+
+        if (distance <= attackRange)
+        {
+            SetState(CharState.WalkToEnemy);
+            navAgent.SetDestination(curCharTarget.transform.position);
+            navAgent.isStopped = false;
+        }
+    }
+
+    protected virtual IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
+    }
+
+    protected virtual void Die()
+    {
+        navAgent.isStopped = true;
+        SetState(CharState.Die);
+
+        anim.SetTrigger("Die");
+
+        StartCoroutine(DestroyObject());
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         
