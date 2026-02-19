@@ -2910,7 +2910,7 @@ GameObject:
   - component: {fileID: -4293698341814927784}
   - component: {fileID: 842669525131667229}
   - component: {fileID: 7462259668197830135}
-  - component: {fileID: 7400902779300359420}
+  - component: {fileID: -3093267405056863086}
   m_Layer: 6
   m_Name: Character_Hero_Knight_Male 1
   m_TagString: Untagged
@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7c56f6e2cb64643a53180048199607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharAnimation
---- !u!114 &7400902779300359420
+--- !u!114 &-3093267405056863086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
