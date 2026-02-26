@@ -18,49 +18,6 @@ public class LeftClick : MonoBehaviour
 
     public static LeftClick instance;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        instance = this;
-        cam = Camera.main;
-        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
-
-        boxSelection = UIManager.instance.SelectionBox;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // mouse down
-        if (Input.GetMouseButtonDown(0))
-        {
-            startPos = Input.mousePosition;
-
-            //if click UI, don't clear
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            ClearEverything();
-        }
-
-        // mouse hold down
-        if (Input.GetMouseButton(0))
-        {
-            //if click UI, don't check
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            UpdateSelectionBox(Input.mousePosition);
-        }
-
-        // mouse up
-        if (Input.GetMouseButtonUp(0))
-        {
-            ReleaseSelectionBox(Input.mousePosition);
-            TrySelect(Input.mousePosition);
-        }
-    }
-
     private void SelectCharacter(RaycastHit hit)
     {
         Character hero = hit.collider.GetComponent<Character>();
@@ -68,6 +25,7 @@ public class LeftClick : MonoBehaviour
 
         PartyManager.instance.SelectChars.Add(hero);
         hero.ToggleRingSelection(true);
+        UIManager.instance.ShowMagicToggles();
     }
 
     private void TrySelect(Vector2 screenPos)
@@ -141,5 +99,48 @@ public class LeftClick : MonoBehaviour
             }
         }
         boxSelection.sizeDelta = new Vector2(0, 0);//clear Selection Box's size
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        instance = this;
+        cam = Camera.main;
+        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
+
+        boxSelection = UIManager.instance.SelectionBox;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // mouse down
+        if (Input.GetMouseButtonDown(0))
+        {
+            startPos = Input.mousePosition;
+
+            //if click UI, don't clear
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            ClearEverything();
+        }
+
+        // mouse hold down
+        if (Input.GetMouseButton(0))
+        {
+            //if click UI, don't check
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            UpdateSelectionBox(Input.mousePosition);
+        }
+
+        // mouse up
+        if (Input.GetMouseButtonUp(0))
+        {
+            ReleaseSelectionBox(Input.mousePosition);
+            TrySelect(Input.mousePosition);
+        }
     }
 }
