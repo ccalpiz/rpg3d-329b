@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4469410539814924155, guid: 409234563cfb786408a8b02475d0a2a0, type: 3}
+      propertyPath: curHP
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -4178,6 +4182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7257bc8cc7fab054c9a2aa4483677b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VFXManager
+  magicVFX:
+  - {fileID: 1236643204216662, guid: 3257400b1db2a5f4f8fcc712b7d23f41, type: 3}
+  - {fileID: 1722081097931586, guid: 9b139ce7b9433f746b15bac25dd3b358, type: 3}
+  - {fileID: 1739096776086156, guid: 86b574a49a12e2545acae010e7f518ea, type: 3}
   doubleRingMarker: {fileID: 6044037666520248651, guid: 6ba617527453f1249b13be576bae5fc3, type: 3}
 --- !u!114 &1082447921
 MonoBehaviour:
@@ -5681,6 +5689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: curHP
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7094,6 +7106,10 @@ PrefabInstance:
     - target: {fileID: 487758, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: curHP
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
