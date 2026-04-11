@@ -5345,6 +5345,9 @@ MonoBehaviour:
   - {fileID: 1251993928265596, guid: 6bde868d3aabdd644a5db1188f2a3d95, type: 3}
   - {fileID: 1380329679129358, guid: 8eb6c56cda4952049a1e19d89885ea5e, type: 3}
   doubleRingMarker: {fileID: 6044037666520248651, guid: 6ba617527453f1249b13be576bae5fc3, type: 3}
+  magicData:
+  - {fileID: 11400000, guid: 5e86f02c84e463d428132a26a9d0bc9b, type: 2}
+  - {fileID: 11400000, guid: 084cc27622a19a245a8d9c447aadfc63, type: 2}
 --- !u!114 &1082447921
 MonoBehaviour:
   m_ObjectHideFlags: 0

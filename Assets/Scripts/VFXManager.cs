@@ -10,6 +10,10 @@ public class VFXManager : MonoBehaviour
     private GameObject doubleRingMarker;
     public GameObject DoubleRingMarker { get { return doubleRingMarker; } }
 
+    [SerializeField]
+    private MagicData[] magicData;
+    public MagicData[] MagicData { get { return magicData; } }
+
     public static VFXManager instance;
 
     private void Awake()
