@@ -10,11 +10,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     { get { return item; } set { item = value; } }
 
     [SerializeField]
-    private int slotIndex;
-    public int SlotIndex
-    { get { return slotIndex; } set { slotIndex = value; } }
-
-    [SerializeField]
     private Transform iconParent;
     public Transform IconParent
     { get { return iconParent; } set { iconParent = value; } }
@@ -49,12 +44,12 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

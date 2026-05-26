@@ -16,8 +16,7 @@ public enum CharState
     WalkToMagicCast,
     MagicCast,
     Hit,
-    Die,
-    WalkToNPC
+    Die
 }
 
 public abstract class Character : MonoBehaviour
@@ -37,17 +36,8 @@ public abstract class Character : MonoBehaviour
     public GameObject RingSelection { get { return ringSelection; } }
 
     [SerializeField]
-    protected int maxHP = 10;
-    public int MaxHp { get { return maxHP; } }
-
-    [SerializeField]
     protected int curHP = 10;
     public int CurHp { get { return curHP; } }
-
-    public void HealHP(int amount)
-    {
-        curHP = Mathf.Min(curHP + amount, maxHP);
-    }
 
     [SerializeField]
     protected Character curCharTarget;
@@ -101,10 +91,6 @@ public abstract class Character : MonoBehaviour
     protected Item shield;
     public Item Shield
     { get { return shield; } set { shield = value; } }
-
-    [SerializeField]
-    protected NPC curNPCTarget;
-    public NPC CurNPCTarget { get { return curNPCTarget; } set { curNPCTarget = value; } }
 
     protected VFXManager vfxManager;
     protected UIManager uiManager;
@@ -169,7 +155,7 @@ public abstract class Character : MonoBehaviour
         else
             SetState(CharState.WalkToEnemy);
     }
-    
+
     public void WalkToEnemyUpdate()
     {
         if (curCharTarget == null)
@@ -333,41 +319,6 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(LoadMagicCast(curMagicCast));
     }
 
-    public void ToTalkNPC(NPC npc)
-    {
-        if (curHP <= 0 || state == CharState.Die)
-            return;
-
-        curNPCTarget = npc;
-        navAgent.SetDestination(npc.transform.position);
-        navAgent.isStopped = false;
-        SetState(CharState.WalkToNPC);
-    }
-
-    protected void WalkToNPCUpdate()
-    {
-        if (curNPCTarget == null)
-        {
-            SetState(CharState.Idle);
-            return;
-        }
-
-        navAgent.SetDestination(curNPCTarget.transform.position);
-
-        float distance = Vector3.Distance(transform.position, curNPCTarget.transform.position);
-
-        if (distance <= 2.5f)
-        {
-            navAgent.isStopped = true;
-            SetState(CharState.Idle);
-
-            if (DialogManager.instance != null)
-                DialogManager.instance.StartDialogue(curNPCTarget, this);
-
-            curNPCTarget = null;
-        }
-    }
-
     protected void WalkToMagicCastUpdate()
     {
         if (curCharTarget == null || curMagicCast == null)
@@ -393,12 +344,12 @@ public abstract class Character : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

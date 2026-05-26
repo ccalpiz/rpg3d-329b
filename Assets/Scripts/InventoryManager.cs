@@ -25,11 +25,6 @@ public class InventoryManager : MonoBehaviour
         instance = this;
     }
 
-    public void RemoveItem(Character character, int slotIndex)
-    {
-        character.InventoryItems[slotIndex] = null;
-    }
-
     public bool AddItem(Character character, int id)
     {
         Item item = new Item(itemData[id]);
@@ -55,6 +50,6 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

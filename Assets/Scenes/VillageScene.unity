@@ -9134,27 +9134,26 @@ MonoBehaviour:
   - {fileID: 954236576}
   - {fileID: 342733597}
   curToggleMagicID: -1
-  blackImage: {fileID: 1206475122}
-  inventoryPanel: {fileID: 553164137}
+  blackImage: {fileID: 0}
+  inventoryPanel: {fileID: 0}
   itemUIPrefab: {fileID: 1053884667978915886, guid: 60e62fc2525e9034792ebcfd40627e0a, type: 3}
-  itemDialog: {fileID: 0}
   slots:
-  - {fileID: 254977337074368964}
-  - {fileID: 242368804}
-  - {fileID: 452606102}
-  - {fileID: 867581984}
-  - {fileID: 2056343507}
-  - {fileID: 1961627169}
-  - {fileID: 2096804857}
-  - {fileID: 39413477}
-  - {fileID: 685032689}
-  - {fileID: 1807508557}
-  - {fileID: 132063305}
-  - {fileID: 866332824}
-  - {fileID: 173616727}
-  - {fileID: 1498856238}
-  - {fileID: 1291785965}
-  - {fileID: 916581446}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1905039574
 GameObject:
   m_ObjectHideFlags: 0

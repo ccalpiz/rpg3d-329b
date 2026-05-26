@@ -10,8 +10,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Toggle togglePauseUnpause;
 
-    public static UIManager instance;
-
     [SerializeField]
     private Toggle[] toggleMagic;
     public Toggle[] ToggleMagic { get { return toggleMagic; } }
@@ -27,9 +25,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject itemUIPrefab;
-
-    [SerializeField]
-    private ItemDialog itemDialog;
 
     [SerializeField]
     private GameObject[] slots;
@@ -99,11 +94,6 @@ public class UIManager : MonoBehaviour
         toggleMagic[curToggleMagicID].isOn = flag;
     }
 
-    public void ShowItemDialog(Item item, int slotIndex, Character hero)
-    {
-        itemDialog.Show(item, slotIndex, hero);
-    }
-
     public void ToggleInventoryPanel()
     {
         if (!inventoryPanel.activeInHierarchy)
@@ -144,18 +134,10 @@ public class UIManager : MonoBehaviour
         //Show items
         for (int i = 0; i < hero.InventoryItems.Length; i++)
         {
-            slots[i].GetComponent<InventorySlot>().SlotIndex = i;
-
             if (hero.InventoryItems[i] != null)
             {
                 GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
                 itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
-                ItemDrag drag = itemObj.GetComponent<ItemDrag>();
-                if (drag != null)
-                {
-                    drag.Item = hero.InventoryItems[i];
-                    drag.SlotIndex = i;
-                }
             }
         }
     }
