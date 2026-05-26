@@ -8422,6 +8422,34 @@ PrefabInstance:
       propertyPath: curHP
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: shield.id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: shield.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 02a2315e79b9f7a4e84f018433ba30a0, type: 3}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: mainWeapon.id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: mainWeapon.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b6f3895076875b44821dbfd833c949b, type: 3}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: shield.itemName
+      value: Shield A
+      objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: mainWeapon.power
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 753719283158599292, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
+      propertyPath: mainWeapon.itemName
+      value: Sword A
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10152,6 +10180,34 @@ PrefabInstance:
       propertyPath: curHP
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: shield.id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: shield.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 02a2315e79b9f7a4e84f018433ba30a0, type: 3}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: mainWeapon.id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: mainWeapon.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b6f3895076875b44821dbfd833c949b, type: 3}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: shield.itemName
+      value: Shield A
+      objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: mainWeapon.power
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 842669525131667229, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+      propertyPath: mainWeapon.itemName
+      value: Sword A
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10518,6 +10574,7 @@ MonoBehaviour:
   blackImage: {fileID: 1206475122}
   inventoryPanel: {fileID: 553164137}
   itemUIPrefab: {fileID: 1053884667978915886, guid: 60e62fc2525e9034792ebcfd40627e0a, type: 3}
+  itemDialog: {fileID: 0}
   slots:
   - {fileID: 254977337074368964}
   - {fileID: 242368804}

@@ -47,6 +47,16 @@ public class RightClick : MonoBehaviour
         }
     }
 
+    private void CommandToTalkNPC(RaycastHit hit, List<Character> heroes)
+    {
+        NPC npc = hit.collider.GetComponent<NPC>();
+        if (npc == null) return;
+
+        // Only the first selected hero talks to NPC
+        if (heroes.Count > 0 && heroes[0] != null)
+            heroes[0].ToTalkNPC(npc);
+    }
+
     private void TryCommand(Vector2 screenPos)
     {
         Ray ray = cam.ScreenPointToRay(screenPos);
@@ -61,6 +71,9 @@ public class RightClick : MonoBehaviour
                     break;
                 case "Enemy":
                     CommandToAttack(hit, PartyManager.instance.SelectChars);
+                    break;
+                case "NPC":
+                    CommandToTalkNPC(hit, PartyManager.instance.SelectChars);
                     break;
             }
         }

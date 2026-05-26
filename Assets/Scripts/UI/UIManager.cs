@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour
     private GameObject itemUIPrefab;
 
     [SerializeField]
+    private ItemDialog itemDialog;
+
+    [SerializeField]
     private GameObject[] slots;
 
     public static UIManager instance;
@@ -94,6 +97,11 @@ public class UIManager : MonoBehaviour
         toggleMagic[curToggleMagicID].isOn = flag;
     }
 
+    public void ShowItemDialog(Item item, int slotIndex, Character hero)
+    {
+        itemDialog.Show(item, slotIndex, hero);
+    }
+
     public void ToggleInventoryPanel()
     {
         if (!inventoryPanel.activeInHierarchy)
@@ -134,10 +142,18 @@ public class UIManager : MonoBehaviour
         //Show items
         for (int i = 0; i < hero.InventoryItems.Length; i++)
         {
+            slots[i].GetComponent<InventorySlot>().SlotIndex = i;
+
             if (hero.InventoryItems[i] != null)
             {
                 GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
                 itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
+                ItemDrag drag = itemObj.GetComponent<ItemDrag>();
+                if (drag != null)
+                {
+                    drag.Item = hero.InventoryItems[i];
+                    drag.SlotIndex = i;
+                }
             }
         }
     }
@@ -152,6 +168,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

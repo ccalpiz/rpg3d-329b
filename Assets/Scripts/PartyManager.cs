@@ -14,6 +14,42 @@ public class PartyManager : MonoBehaviour
     private List<Character> selectChars = new List<Character>();
     public List<Character> SelectChars { get { return selectChars; } }
 
+    //[Header("Quests")]
+    //[SerializeField]
+    //private List<Quest> activeQuests = new List<Quest>();
+    //public List<Quest> ActiveQuests { get { return activeQuests; } }
+
+    //public Quest GetQuest(int questId)
+    //{
+    //    return activeQuests.Find(q => q.Data.id == questId);
+    //}
+
+    //public void RegisterQuest(Quest quest)
+    //{
+    //    if (GetQuest(quest.Data.id) == null)
+    //        activeQuests.Add(quest);
+    //}
+
+    //public void OnEnemyKilled(string enemyTag)
+    //{
+    //    foreach (Quest q in activeQuests)
+    //    {
+    //        if (q.State == QuestState.InProgress &&
+    //            q.Data.type == QuestType.KillCount &&
+    //            q.Data.targetTag == enemyTag)
+    //        {
+    //            q.CurrentKillCount++;
+    //            Debug.Log($"Kill count: {q.CurrentKillCount}/{q.Data.killCount} for quest {q.Data.questName}");
+    //        }
+    //    }
+    //}
+
+    public void AddExpToParty(int exp)
+    {
+        if (exp <= 0) return;
+        Debug.Log($"Party gained {exp} EXP.");
+    }
+
     public static PartyManager instance;
 
     void Awake()
@@ -41,7 +77,6 @@ public class PartyManager : MonoBehaviour
         selectChars[0].CurMagicCast = selectChars[0].MagicSkills[i];
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         foreach (Character c in members)
@@ -73,7 +108,6 @@ public class PartyManager : MonoBehaviour
         UIManager.instance.ShowMagicToggles();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
