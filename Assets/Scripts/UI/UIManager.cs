@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Toggle togglePauseUnpause;
 
+    public static UIManager instance;
+
     [SerializeField]
     private Toggle[] toggleMagic;
     public Toggle[] ToggleMagic { get { return toggleMagic; } }
