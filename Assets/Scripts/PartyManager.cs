@@ -53,15 +53,15 @@ public class PartyManager : MonoBehaviour
 
         // Hero 1
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
-        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        members[2].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[2]));
-        members[3].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[3]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
 
         // Hero 2
-        members[4].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[4]));
-        members[5].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[5]));
-        members[6].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[6]));
-        members[7].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[7]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
 
         InventoryManager.instance.AddItem(members[0], 0);//Health Potion
         InventoryManager.instance.AddItem(members[0], 1);//Sword
