@@ -137,21 +137,25 @@ public class UIManager : MonoBehaviour
             if (hero.InventoryItems[i] != null)
             {
                 GameObject itemObj = Instantiate(itemUIPrefab, slots[i].transform);
-                itemObj.GetComponent<Image>().sprite = hero.InventoryItems[i].Icon;
+                ItemDrag itemDrag = itemObj.GetComponent<ItemDrag>();
+
+                itemDrag.Item = hero.InventoryItems[i];
+                itemDrag.IconParent = slots[i].transform;
+                itemDrag.Image.sprite = hero.InventoryItems[i].Icon;
             }
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void InitSlots()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            togglePauseUnpause.isOn = !togglePauseUnpause.isOn;
+        for (int i = 0; i < InventoryManager.MAXSLOT; i++)
+        {
+            slots[i].GetComponent<InventorySlot>().ID = i;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-
+        InitSlots();
     }
 }

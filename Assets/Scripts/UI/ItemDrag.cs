@@ -1,30 +1,28 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private Item item;
-    public Item Item
-    { get { return item; } set { item = value; } }
+    public Item Item { get { return item; } set { item = value; } }
 
     [SerializeField]
     private Transform iconParent;
-    public Transform IconParent
-    { get { return iconParent; } set { iconParent = value; } }
+    public Transform IconParent { get { return iconParent; } set { iconParent = value; } }
 
     [SerializeField]
     private Image image;
-    public Image Image
-    { get { return image; } set { image = value; } }
+    public Image Image { get { return image; } set { image = value; } }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("BeginDrag");
         iconParent = transform.parent;
         transform.SetParent(transform.root);
-        transform.SetAsFirstSibling();
+        transform.SetAsLastSibling();
         image.raycastTarget = false;
     }
 
@@ -41,15 +39,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         image.raycastTarget = true;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private int FindIndexOfSlotParent()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        int id = iconParent.GetComponent<InventorySlot>().ID;
+        return id;
     }
 }
