@@ -2913,7 +2913,7 @@ GameObject:
   - component: {fileID: -3093267405056863086}
   m_Layer: 6
   m_Name: Character_Hero_Knight_Male
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3031,6 +3031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   anim: {fileID: 0}
+  avatarPic: {fileID: 0}
+  charName: 
   state: 0
   ringSelection: {fileID: 5183246560696275628}
   curHP: 10
@@ -3040,6 +3042,31 @@ MonoBehaviour:
   attackCoolDown: 2
   attackTimer: 0
   findingRange: 20
+  magicSkills: []
+  curMagicCast:
+    id: 0
+    name: 
+    icon: {fileID: 0}
+    range: 0
+    power: 0
+    loadTime: 0
+    shootTime: 0
+    loadId: 0
+    shootId: 0
+  isMagicMode: 0
+  inventoryItems: []
+  mainWeapon:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+  shield:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
 --- !u!114 &7462259668197830135
 MonoBehaviour:
   m_ObjectHideFlags: 0

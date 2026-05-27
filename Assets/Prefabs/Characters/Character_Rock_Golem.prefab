@@ -1924,7 +1924,7 @@ GameObject:
   - component: {fileID: -9149597574521008085}
   m_Layer: 6
   m_Name: Character_Rock_Golem
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2042,6 +2042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   anim: {fileID: 0}
+  avatarPic: {fileID: 0}
+  charName: 
   state: 0
   ringSelection: {fileID: 3344709554874350182}
   curHP: 10
@@ -2051,6 +2053,31 @@ MonoBehaviour:
   attackCoolDown: 2
   attackTimer: 0
   findingRange: 20
+  magicSkills: []
+  curMagicCast:
+    id: 0
+    name: 
+    icon: {fileID: 0}
+    range: 0
+    power: 0
+    loadTime: 0
+    shootTime: 0
+    loadId: 0
+    shootId: 0
+  isMagicMode: 0
+  inventoryItems: []
+  mainWeapon:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+  shield:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
 --- !u!114 &4884088163926420487
 MonoBehaviour:
   m_ObjectHideFlags: 0
