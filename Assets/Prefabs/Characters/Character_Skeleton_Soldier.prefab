@@ -2047,6 +2047,7 @@ MonoBehaviour:
   state: 0
   ringSelection: {fileID: 3344709554874350182}
   curHP: 10
+  maxHP: 100
   curCharTarget: {fileID: 0}
   attackRange: 2
   attackDamage: 3
@@ -2072,12 +2073,17 @@ MonoBehaviour:
     type: 0
     icon: {fileID: 0}
     power: 0
+    prefabID: 0
   shield:
     id: 0
     itemName: 
     type: 0
     icon: {fileID: 0}
     power: 0
+    prefabID: 0
+  shieldHand: {fileID: 495656}
+  shieldObj: {fileID: 0}
+  defensePower: 0
 --- !u!114 &4884088163926420487
 MonoBehaviour:
   m_ObjectHideFlags: 0
