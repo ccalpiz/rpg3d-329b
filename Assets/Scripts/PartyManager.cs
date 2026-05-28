@@ -64,7 +64,8 @@ public class PartyManager : MonoBehaviour
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
 
         InventoryManager.instance.AddItem(members[0], 0);//Health Potion
-        InventoryManager.instance.AddItem(members[0], 1);//Sword
+        InventoryManager.instance.AddItem(members[0], 1);//Sword A
+        InventoryManager.instance.AddItem(members[0], 4);//Sword B
         InventoryManager.instance.AddItem(members[0], 2);//Shield A
 
         InventoryManager.instance.AddItem(members[1], 0);//Health Potion

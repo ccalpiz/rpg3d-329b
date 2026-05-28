@@ -2084,6 +2084,16 @@ MonoBehaviour:
   shieldHand: {fileID: 495656}
   shieldObj: {fileID: 0}
   defensePower: 0
+  weapon:
+    id: 0
+    itemName: 
+    type: 0
+    icon: {fileID: 0}
+    power: 0
+    prefabID: 0
+  weaponHand: {fileID: 470346}
+  weaponObj: {fileID: 0}
+  attackPower: 0
 --- !u!114 &4884088163926420487
 MonoBehaviour:
   m_ObjectHideFlags: 0

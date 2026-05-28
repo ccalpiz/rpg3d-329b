@@ -76,35 +76,29 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected List<Magic> magicSkills = new List<Magic>();
-    public List<Magic> MagicSkills
-    { get { return magicSkills; } set { magicSkills = value; } }
+    public List<Magic> MagicSkills { get { return magicSkills; } set { magicSkills = value; } }
 
     [SerializeField]
     protected Magic curMagicCast = null;
-    public Magic CurMagicCast
-    { get { return curMagicCast; } set { curMagicCast =  value; } }
+    public Magic CurMagicCast { get { return curMagicCast; } set { curMagicCast =  value; } }
 
     [SerializeField]
     protected bool isMagicMode = false;
-    public bool IsMagicMode
-    { get { return isMagicMode; } set { isMagicMode = value; } }
+    public bool IsMagicMode { get { return isMagicMode; } set { isMagicMode = value; } }
 
     [Header("Inventory")]
 
     [SerializeField]
     protected Item[] inventoryItems;
-    public Item[] InventoryItems
-    { get { return inventoryItems; } set { inventoryItems = value; } }
+    public Item[] InventoryItems { get { return inventoryItems; } set { inventoryItems = value; } }
 
     [SerializeField]
     protected Item mainWeapon;
-    public Item MainWeapon
-    { get { return mainWeapon; } set { mainWeapon = value; } }
+    public Item MainWeapon { get { return mainWeapon; } set { mainWeapon = value; } }
 
     [SerializeField]
     protected Item shield;
-    public Item Shield
-    { get { return shield; } set { shield = value; } }
+    public Item Shield { get { return shield; } set { shield = value; } }
 
     [SerializeField]
     protected Transform shieldHand;
@@ -114,6 +108,19 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int defensePower = 0;
+
+    [SerializeField]
+    protected Item weapon;
+    public Item Weapon { get { return weapon; } set { weapon = value; } }
+
+    [SerializeField]
+    protected Transform weaponHand;
+
+    [SerializeField]
+    protected GameObject weaponObj;
+
+    [SerializeField]
+    protected int attackPower = 0;
 
     protected VFXManager vfxManager;
     protected UIManager uiManager;
@@ -400,6 +407,27 @@ public abstract class Character : MonoBehaviour
             defensePower -= shield.Power;
             shield = null;
             Destroy(shieldObj);
+        }
+    }
+
+    public void EquipWeapon(Item item)
+    {
+        weaponObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], weaponHand);
+
+        weaponObj.transform.localPosition = new Vector3(12f, 3f, 0f);
+        weaponObj.transform.Rotate(0f, 90f, -90f, Space.Self);
+
+        attackPower += item.Power;
+        weapon = item;
+    }
+
+    public void UnEquipWeapon()
+    {
+        if (weapon != null)
+        {
+            attackPower -= weapon.Power;
+            weapon = null;
+            Destroy(weaponObj);
         }
     }
 

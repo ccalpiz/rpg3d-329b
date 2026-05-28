@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         InventoryManager.instance.AddItem(monsters[0], 0); //HealthPotion
-        InventoryManager.instance.AddItem(monsters[0], 1); //HealthPotion
-        InventoryManager.instance.AddItem(monsters[0], 2); //HealthPotion
+        InventoryManager.instance.AddItem(monsters[0], 1); //Sword A
+        InventoryManager.instance.AddItem(monsters[0], 2); //Shield A
     }
 }
