@@ -3,6 +3,7 @@ using System.Runtime.ConstrainedExecution;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LeftClick : MonoBehaviour
 {
@@ -18,14 +19,60 @@ public class LeftClick : MonoBehaviour
 
     public static LeftClick instance;
 
-    private void SelectCharacter(RaycastHit hit)
-    {
-        Character hero = hit.collider.GetComponent<Character>();
-        Debug.Log("Selected Char: " + hit.collider.gameObject);
 
-        PartyManager.instance.SelectChars.Add(hero);
-        hero.ToggleRingSelection(true);
-        UIManager.instance.ShowMagicToggles();
+    void Start()
+    {
+        instance = this;
+        cam = Camera.main;
+        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
+
+        boxSelection = UIManager.instance.SelectionBox;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // mouse down
+        if (Input.GetMouseButtonDown(0))
+        {
+            startPos = Input.mousePosition;
+
+            //if click UI, don't clear
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            //ClearEverything();
+        }
+
+        // mouse hold down
+        if (Input.GetMouseButton(0))
+        {
+            //if click UI, don't check
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            UpdateSelectionBox(Input.mousePosition);
+        }
+
+        // mouse up
+        if (Input.GetMouseButtonUp(0))
+        {
+            ReleaseSelectionBox(Input.mousePosition);
+            TrySelect(Input.mousePosition);
+        }
+    }
+
+    private int SelectCharacter(RaycastHit hit)
+    {
+        ClearEverything();
+
+        Character hero = hit.collider.GetComponent<Character>();
+        // Debug.Log("Select Char: " + hit.collider.gameObject);
+
+        int i = PartyManager.instance.FidIndexFromClass(hero);
+        UIManager.instance.ToggleAvatar[i].isOn = true;
+
+        return i;
     }
 
     private void TrySelect(Vector2 screenPos)
@@ -53,6 +100,9 @@ public class LeftClick : MonoBehaviour
 
     private void ClearEverything()
     {
+        foreach (Toggle t in UIManager.instance.ToggleAvatar)
+            t.isOn = false;
+
         ClearRingSelection();
         PartyManager.instance.SelectChars.Clear();
     }
@@ -76,7 +126,7 @@ public class LeftClick : MonoBehaviour
         //store old position for real unit selection
         oldAnchoredPos = boxSelection.anchoredPosition;
     }
-    
+
     private void ReleaseSelectionBox(Vector2 mousePos)
     {
         //Debug.Log("Step 2 - " + Release Mouse)
@@ -102,45 +152,5 @@ public class LeftClick : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        instance = this;
-        cam = Camera.main;
-        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
 
-        boxSelection = UIManager.instance.SelectionBox;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // mouse down
-        if (Input.GetMouseButtonDown(0))
-        {
-            startPos = Input.mousePosition;
-
-            //if click UI, don't clear
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            ClearEverything();
-        }
-
-        // mouse hold down
-        if (Input.GetMouseButton(0))
-        {
-            //if click UI, don't check
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            UpdateSelectionBox(Input.mousePosition);
-        }
-
-        // mouse up
-        if (Input.GetMouseButtonUp(0))
-        {
-            ReleaseSelectionBox(Input.mousePosition);
-            TrySelect(Input.mousePosition);
-        }
-    }
 }

@@ -120,11 +120,11 @@ public class PartyManager : MonoBehaviour
 
     public void UnSelectSingleHeroByToggle(int i)
     {
-        if (selectChars.Count <= 1)
-        {
-            UIManager.instance.ToggleAvatar[i].isOn = true;
-            return;
-        }
+        // if (selectChars.Count <= 1)
+        // {
+        //     UIManager.instance.ToggleAvatar[i].isOn = true;
+        //     return;
+        // }
 
         if (selectChars.Contains(members[i]))
         {

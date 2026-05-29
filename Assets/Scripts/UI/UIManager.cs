@@ -118,7 +118,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         InitSlots();
-        //MapToggleAvatar();
+        MapToggleAvatar();
     }
     private void Update()
     {
@@ -445,5 +445,42 @@ public class UIManager : MonoBehaviour
     public void ClosePanelButton()
     {
         ToggleDialogueBox(false);
+    }
+
+    public void MapToggleAvatar()
+    {
+        foreach (Toggle t in toggleAvatar)
+            t.gameObject.SetActive(false);
+
+        for (int i = 0; i < PartyManager.instance.Members.Count; i++)
+        {
+            toggleAvatar[i].gameObject.SetActive(true);
+
+            toggleAvatar[i].targetGraphic.GetComponent<Image>().sprite
+            = PartyManager.instance.Members[i].AvatarPic;
+        }
+
+        toggleAvatar[0].isOn = true;
+    }
+
+    public void SelectHeroByAvatar(int i)
+    {
+        Debug.Log($"Toggle: {i} is working");
+
+        if (i >= PartyManager.instance.Members.Count) return;
+
+        if (toggleAvatar[i].isOn)
+        {
+            Debug.Log($"is On: {i}");
+            PartyManager.instance.SelectsingleHeroByToggle(i);
+
+            // if (charPanel.activeInHierarchy)
+            //     ShowCharPanel();
+        }
+        else
+        {
+            Debug.Log($"is off: {i}");
+            PartyManager.instance.UnSelectSingleHeroByToggle(i);
+        }
     }
 }
