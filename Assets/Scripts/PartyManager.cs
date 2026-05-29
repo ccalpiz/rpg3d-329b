@@ -14,6 +14,10 @@ public class PartyManager : MonoBehaviour
     private List<Character> selectChars = new List<Character>();
     public List<Character> SelectChars { get { return selectChars; } }
 
+    [SerializeField]
+    private List<Quest> questList = new List<Quest>();
+    public List<Quest> QuestList { get { return questList; } }
+
     public static PartyManager instance;
 
     void Awake()
@@ -86,6 +90,46 @@ public class PartyManager : MonoBehaviour
                 selectChars[0].IsMagicMode = true;
                 selectChars[0].CurMagicCast = selectChars[0].MagicSkills[0];
             }
+        }
+    }
+
+    public int FidIndexFromClass(Character hero)
+    {
+        for (int i = 0; i < members.Count; i++)
+        {
+            if (members[i] == hero)
+                return i;
+        }
+        return 0;
+    }
+
+    public void SelectsingleHeroByToggle(int i)
+    {
+        if (selectChars.Contains(members[i]))
+        {
+            members[i].ToggleRingSelection(true);
+            UIManager.instance.ShowMagicToggles();
+        }
+        else
+        {
+            selectChars.Add(members[i]);
+            members[i].ToggleRingSelection(true);
+            UIManager.instance.ShowMagicToggles();
+        }
+    }
+
+    public void UnSelectSingleHeroByToggle(int i)
+    {
+        if (selectChars.Count <= 1)
+        {
+            UIManager.instance.ToggleAvatar[i].isOn = true;
+            return;
+        }
+
+        if (selectChars.Contains(members[i]))
+        {
+            selectChars.Remove(members[i]);
+            members[i].ToggleRingSelection(false);
         }
     }
 }
