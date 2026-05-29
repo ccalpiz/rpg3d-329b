@@ -27,11 +27,11 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Animator anim;
-    public Animator Anim {  get { return anim; } }
+    public Animator Anim { get { return anim; } }
 
     [SerializeField]
     protected Sprite avatarPic;
-    public Sprite AvatarPic {  get { return avatarPic; } }
+    public Sprite AvatarPic { get { return avatarPic; } }
 
     [SerializeField]
     protected string charName;
@@ -63,6 +63,8 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int attackDamage = 3;
+    public int AttackDamage { get { return attackDamage; } set { attackDamage = value; } }
+
 
     [SerializeField]
     protected float attackCoolDown = 2f;
@@ -80,7 +82,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Magic curMagicCast = null;
-    public Magic CurMagicCast { get { return curMagicCast; } set { curMagicCast =  value; } }
+    public Magic CurMagicCast { get { return curMagicCast; } set { curMagicCast = value; } }
 
     [SerializeField]
     protected bool isMagicMode = false;
@@ -108,6 +110,8 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int defensePower = 0;
+    public int DefensePower { get { return defensePower; } set { defensePower = value; } }
+
 
     [SerializeField]
     protected Item weapon;
@@ -179,7 +183,7 @@ public abstract class Character : MonoBehaviour
 
         //start walking to enemy
         navAgent.SetDestination(target.transform.position);
-        navAgent.isStopped = false ;
+        navAgent.isStopped = false;
 
         if (isMagicMode)
             SetState(CharState.WalkToMagicCast);
@@ -240,7 +244,7 @@ public abstract class Character : MonoBehaviour
 
     protected void AttackLogic()
     {
-        Character target  = curCharTarget.GetComponent<Character>();
+        Character target = curCharTarget.GetComponent<Character>();
 
         if (target != null)
             target.ReceiveDamage(attackDamage);
@@ -266,7 +270,7 @@ public abstract class Character : MonoBehaviour
             SetState(CharState.Idle);
             return;
         }
-        navAgent.isStopped = true ;
+        navAgent.isStopped = true;
 
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackCoolDown)
@@ -384,7 +388,7 @@ public abstract class Character : MonoBehaviour
     public void Recover(int n)
     {
         curHP += n;
-        
+
         if (curHP > maxHP)
             curHP = maxHP;
     }
