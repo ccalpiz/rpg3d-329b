@@ -47,7 +47,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int curHP = 10;
-    public int CurHp { get { return curHP; } }
+    public int CurHp { get { return curHP; } set { curHP = value; } }
 
     [SerializeField]
     protected int maxHP = 100;
@@ -435,18 +435,6 @@ public abstract class Character : MonoBehaviour
             weapon = null;
             Destroy(weaponObj);
         }
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ToTalkToNPC(Character npc)

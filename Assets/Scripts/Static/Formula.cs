@@ -21,7 +21,7 @@ public class Formula : MonoBehaviour
                 continue;
 
             float distance = Vector3.Distance(me.transform.position, hits[i].transform.position);
-            
+
             if (closetTarget == null || distance < closetDist)
             {
                 closetTarget = target;
@@ -31,15 +31,4 @@ public class Formula : MonoBehaviour
         return closetTarget;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

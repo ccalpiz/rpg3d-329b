@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
         {
             Setting.isNewGame = false;
             GeneratePlayerHero();
-            //AudioManager.instance.PlayBGM(0); //Play Village BGM
+            AudioManager.instance.PlayBGM(0);
         }
 
         if (Setting.isWarping)
         {
             Setting.isWarping = false;
-            //WarpPlayers();
+            WarpPlayers();
         }
     }
 
@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
         Character hero = heroObj.GetComponent<Character>();
         PartyManager.instance.Members.Add(hero);
 
-        // hero.CharInit(UIManager.instance, InventoryManager.instance, PartyManager.instance);
+        hero.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, PartyManager.instance);
 
-        // InventoryManager.instance.AddItem(hero, 0); //health potion
-        // InventoryManager.instance.AddItem(hero, 2); //Shield A
+        InventoryManager.instance.AddItem(hero, 0); //health potion
+        InventoryManager.instance.AddItem(hero, 2); //Shield A
     }
 
-    // private void WarpPlayers()
-    // {
-    //     PartyManager.instance.LoadAllHeroData();
-    // }
+    private void WarpPlayers()
+    {
+        PartyManager.instance.LoadAllHeroData();
+    }
 }
