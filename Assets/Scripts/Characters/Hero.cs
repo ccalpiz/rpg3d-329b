@@ -74,18 +74,31 @@ public class Hero : Character
 
             uiManager.PrepareDialogueBox(npc);
 
-            // if (npc != null)
-            // {
-            //     if (npc.IsShopKeeper)
-            //         uiManager.PrepareShopPanel(npc, this);
-            //     else
-            //         uiManager.PrepareDialogueBox(npc);
-            // }
-            // else
-            // {
-            //     Hero hero = curCharTarget.GetComponent<Hero>();
-            //     uiManager.PrepareHeroJoinParty(hero);
-            // }
+            if (npc != null)
+            {
+                if (npc.IsShopKeeper)
+                    uiManager.PrepareShopPanel(npc, this);
+                else
+                    uiManager.PrepareDialogueBox(npc);
+            }
+            else
+            {
+                Hero hero = curCharTarget.GetComponent<Hero>();
+                //uiManager.PrepareHeroJoinParty(hero);
+            }
         }
     }
+
+    public void SaveItemInInventory(Item item)
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (InventoryItems[i] == null)
+            {
+                InventoryItems[i] = item;
+                return;
+            }
+        }
+    }
+
 }
