@@ -2912,7 +2912,7 @@ GameObject:
   - component: {fileID: -3093267405056863086}
   m_Layer: 6
   m_Name: Character_Hero_Knight_Male
-  m_TagString: Hero
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3030,15 +3030,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   anim: {fileID: 0}
-  avatarPic: {fileID: 0}
-  charName: 
+  avatarPic: {fileID: 21300000, guid: 27e9bb522f9e6b7439c6f562f94fce25, type: 3}
+  charName: Mamamiya
   state: 0
   ringSelection: {fileID: 5183246560696275628}
-  curHP: 10
+  curHP: 100
   maxHP: 100
   curCharTarget: {fileID: 0}
   attackRange: 2
-  attackDamage: 3
+  attackDamage: 50
   attackCoolDown: 2
   attackTimer: 0
   findingRange: 20
@@ -3062,6 +3062,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   shield:
     id: 0
     itemName: 
@@ -3069,6 +3070,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   shieldHand: {fileID: 483062}
   shieldObj: {fileID: 0}
   defensePower: 0
@@ -3079,9 +3081,19 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   weaponHand: {fileID: 496550}
   weaponObj: {fileID: 0}
-  attackPower: 0
+  attackPower: 1
+  exp: 0
+  level: 1
+  nextExp: 30
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
 --- !u!114 &7462259668197830135
 MonoBehaviour:
   m_ObjectHideFlags: 0

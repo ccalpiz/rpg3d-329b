@@ -26,11 +26,10 @@ public class QuestManager : MonoBehaviour
     }
     private void Start()
     {
-        // foreach (Character npc in npcPerson)
-        // {
-        //     npc.charInit(UIManager.instance,
-        //                  InventoryManager.instance, PartyManager.instance);
-        // }
+        foreach (Character npc in npcPerson)
+        {
+            npc.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, PartyManager.instance);
+        }
 
         AddQuestToNPC(npcPerson[0], questData[0]); //Golem
     }

@@ -129,6 +129,7 @@ public abstract class Character : MonoBehaviour
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
+    protected PartyManager partyManager;
 
     private void Awake()
     {
@@ -307,11 +308,12 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(DestroyObject());
     }
 
-    public void charInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
+    public void CharInit(VFXManager vfxM, UIManager uiM, InventoryManager invM, PartyManager partyM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
         invManager = invM;
+        partyManager = partyM;
 
         inventoryItems = new Item[InventoryManager.MAXSLOT];
     }

@@ -72,7 +72,6 @@ public class Hero : Character
 
             NPC npc = curCharTarget.GetComponent<NPC>();
 
-            uiManager.PrepareDialogueBox(npc);
 
             if (npc != null)
             {
@@ -84,10 +83,11 @@ public class Hero : Character
             else
             {
                 Hero hero = curCharTarget.GetComponent<Hero>();
-                //uiManager.PrepareHeroJoinParty(hero);
+                uiManager.PrepareHeroJoinParty(hero);
             }
         }
     }
+
 
     public void SaveItemInInventory(Item item)
     {
@@ -98,6 +98,54 @@ public class Hero : Character
                 InventoryItems[i] = item;
                 return;
             }
+        }
+    }
+
+    public void ReceiveExp(int n)
+    {
+        exp += n;
+        CheckLevel(exp);
+    }
+
+    private void UpdateStat()
+    {
+        attackDamage++;
+        defensePower++;
+        maxHP++;
+
+        //bonus
+        if (strength >= Random.Range(1, 20))
+            attackDamage++;
+
+        if (dexterity >= Random.Range(1, 20))
+            defensePower++;
+
+        if (constitution >= Random.Range(1, 20))
+            maxHP++;
+    }
+
+    private void CheckLevel(int exp)
+    {
+        nextExp = level * 30;
+
+        while (exp >= nextExp)
+        {
+            level++;
+            nextExp = level * 30;
+            UpdateStat();
+
+            switch (level)
+            {
+                case 5:
+                    magicSkills.Add(new Magic(vfxManager.MagicData[0]));
+                    uiManager.ShowMagicToggles();
+                    break;
+                case 10:
+                    magicSkills.Add(new Magic(vfxManager.MagicData[1]));
+                    uiManager.ShowMagicToggles();
+                    break;
+            }
+            // GiveMagicAtLevel(level);
         }
     }
 
