@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RightClick : MonoBehaviour
 {
@@ -19,9 +20,9 @@ public class RightClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(1))
+        if (Mouse.current.rightButton.wasReleasedThisFrame)
         {
-            TryCommand(Input.mousePosition);
+            TryCommand(Mouse.current.position.value);
         }
     }
 

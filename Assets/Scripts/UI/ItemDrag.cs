@@ -33,7 +33,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("Dragging");
-        transform.position = Input.mousePosition;
+        transform.position = Mouse.current.position.value;
     }
 
     public void OnEndDrag(PointerEventData eventData)

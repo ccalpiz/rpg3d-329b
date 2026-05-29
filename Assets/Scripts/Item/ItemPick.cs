@@ -16,17 +16,17 @@ public class ItemPick : MonoBehaviour
         partyManager = ptyManager;
     }
 
-    public void PickUpItem(Character hero)
+    public void PickUpItem()
     {
-        if (inventoryManager.AddItem(hero, item.ID))
+        if (inventoryManager.AddItem(partyManager.SelectChars[0], item.ID))
             Destroy(gameObject);
     }
 
-    private void OnMouseDown()
-    {
-        Debug.Log("Pick up");
-        
-        if (partyManager.SelectChars.Count > 0)
-            PickUpItem(partyManager.SelectChars[0]);
-    }
+    // private void OnMouseDown()
+    // {
+    //     Debug.Log("Pick up");
+
+    //     if (partyManager.SelectChars.Count > 0)
+    //         PickUpItem(partyManager.SelectChars[0]);
+    // }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class PartyManager : MonoBehaviour
@@ -59,42 +60,18 @@ public class PartyManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // foreach (Character c in members)
-        // {
-        //     c.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, this);
-        // }
-
-        SelectSingleHero(0);
-
-        // Hero 1
-        // members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
-        // members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        // members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        // members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-
-        // // Hero 2
-        // members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        // members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        // members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-        // members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
-
-        // InventoryManager.instance.AddItem(members[0], 0);//Health Potion
-        // InventoryManager.instance.AddItem(members[0], 1);//Sword A
-        // InventoryManager.instance.AddItem(members[0], 4);//Sword B
-        // InventoryManager.instance.AddItem(members[0], 2);//Shield A
-
-        // InventoryManager.instance.AddItem(members[1], 0);//Health Potion
-        // InventoryManager.instance.AddItem(members[1], 1);//Sword A
-        // InventoryManager.instance.AddItem(members[1], 2);//Shield A
-        // InventoryManager.instance.AddItem(members[1], 3);//Shield B
-
-        UIManager.instance.ShowMagicToggles();
+        if (members.Count > 0)
+        {
+            SelectSingleHero(0);
+            UIManager.instance.MapToggleAvatar();
+            UIManager.instance.ShowMagicToggles();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             if (selectChars.Count > 0)
             {
@@ -171,8 +148,8 @@ public class PartyManager : MonoBehaviour
         if (members.Contains(hero))
             return false;
 
-        hero.CharInit(VFXManager.instance, UIManager.instance,
-                InventoryManager.instance, this);
+        hero.CharInit(UIManager.instance,
+                 InventoryManager.instance, this);
 
         members.Add(hero);
         return true;
@@ -233,7 +210,7 @@ public class PartyManager : MonoBehaviour
                 heroObj.gameObject.tag = "Player";
 
             Hero hero = heroObj.GetComponent<Hero>();
-            hero.CharInit(VFXManager.instance, UIManager.instance, InventoryManager.instance, this);
+            hero.CharInit(UIManager.instance, InventoryManager.instance, this);
             hero.CurHp = heroData[i].curHp;
 
             for (int j = 0; j < heroData[i].magicIds.Count; j++)

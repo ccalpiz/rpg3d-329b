@@ -3,6 +3,7 @@ using System.Runtime.ConstrainedExecution;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class LeftClick : MonoBehaviour
@@ -33,32 +34,28 @@ public class LeftClick : MonoBehaviour
     void Update()
     {
         // mouse down
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            startPos = Input.mousePosition;
+            startPos = Mouse.current.position.value;
 
-            //if click UI, don't clear
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            ClearEverything();
+            // ClearEverything();
         }
 
-        // mouse hold down
-        if (Input.GetMouseButton(0))
+        if (Mouse.current.leftButton.isPressed)
         {
-            //if click UI, don't check
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
+            // if (EventSystem.current.IsPointerOverGameObject())
+            //     return;
 
-            UpdateSelectionBox(Input.mousePosition);
+            UpdateSelectionBox(Mouse.current.position.value);
         }
 
-        // mouse up
-        if (Input.GetMouseButtonUp(0))
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            ReleaseSelectionBox(Input.mousePosition);
-            TrySelect(Input.mousePosition);
+            ReleaseSelectionBox(Mouse.current.position.value);
+            TrySelect(Mouse.current.position.value);
         }
     }
 
@@ -90,9 +87,9 @@ public class LeftClick : MonoBehaviour
                 case "Hero":
                     i = SelectCharacter(hit);
                     break;
-                    // case "Item":
-                    //     SelectItem(hit);
-                    //     break;
+                case "Item":
+                    SelectItem(hit);
+                    break;
             }
         }
 
@@ -139,28 +136,44 @@ public class LeftClick : MonoBehaviour
 
     private void ReleaseSelectionBox(Vector2 mousePos)
     {
-        //Debug.Log("Step 2 - " + Release Mouse)
-        Vector2 corner1;
-        Vector2 corner2;
+        Vector2 corner1; //down-left corner
+        Vector2 corner2; //top-right corner
 
         boxSelection.gameObject.SetActive(false);
 
         corner1 = oldAnchoredPos - (boxSelection.sizeDelta / 2);
         corner2 = oldAnchoredPos + (boxSelection.sizeDelta / 2);
 
+        bool anyNewCharSelect = false;
+
         foreach (Character member in PartyManager.instance.Members)
         {
             Vector2 unitPos = cam.WorldToScreenPoint(member.transform.position);
-
-            if ((unitPos.x > corner1.x && unitPos.x < corner2.x) && (unitPos.y > corner1.y && unitPos.y < corner2.y))
+            if ((unitPos.x > corner1.x && unitPos.x < corner2.x)
+                && (unitPos.y > corner1.y && unitPos.y < corner2.y))
             {
+                if (anyNewCharSelect == false)
+                {
+                    anyNewCharSelect = true;
+                    ClearEverything();
+                }
+
                 int i = PartyManager.instance.FidIndexFromClass(member);
                 UIManager.instance.ToggleAvatar[i].isOn = true;
             }
+            boxSelection.sizeDelta = new Vector2(0, 0);
         }
-        boxSelection.sizeDelta = new Vector2(0, 0);//clear Selection Box's size
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void SelectItem(RaycastHit hit)
+    {
+        ItemPick itemPick = hit.collider.GetComponent<ItemPick>();
+        //Debug.Log("Pick Item: " + itemPick.Item.ItemName);
 
+        if (PartyManager.instance.SelectChars.Count == 0)
+            UIManager.instance.ToggleAvatar[0].isOn = true;
+
+        if (itemPick != null)
+            itemPick.PickUpItem();
+    }
 }

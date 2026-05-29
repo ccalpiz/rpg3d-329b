@@ -48,9 +48,17 @@ public class VFXManager : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        MyAction.onLoadMagic += LoadMagic;
+        MyAction.onShootMagic += ShootMagic;
+        //MyAction.onCreateMagic += CreateMagic;
+    }
+
+    private void OnDisable()
+    {
+        MyAction.onLoadMagic -= LoadMagic;
+        MyAction.onShootMagic -= ShootMagic;
+        //MyAction.onCreateMagic -= CreateMagic;
     }
 }

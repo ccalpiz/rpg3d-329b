@@ -125,8 +125,6 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int attackPower = 0;
-
-    protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
     protected PartyManager partyManager;
@@ -254,8 +252,10 @@ public abstract class Character : MonoBehaviour
     protected void Attack()
     {
         transform.LookAt(curCharTarget.transform);
-
         anim.SetTrigger("Attack");
+
+        float n = UnityEngine.Random.Range(0, 4);
+        anim.SetFloat("AttackValue", n);
 
         //attack logic
         AttackLogic();
@@ -269,6 +269,7 @@ public abstract class Character : MonoBehaviour
         if (curCharTarget.CurHp <= 0)
         {
             SetState(CharState.Idle);
+            curCharTarget = null;
             return;
         }
         navAgent.isStopped = true;
@@ -308,9 +309,8 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(DestroyObject());
     }
 
-    public void CharInit(VFXManager vfxM, UIManager uiM, InventoryManager invM, PartyManager partyM)
+    public void CharInit(UIManager uiM, InventoryManager invM, PartyManager partyM)
     {
-        vfxManager = vfxM;
         uiManager = uiM;
         invManager = invM;
         partyManager = partyM;
@@ -328,29 +328,30 @@ public abstract class Character : MonoBehaviour
 
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
-        if (vfxManager != null)
-            vfxManager.ShootMagic(curMagicCast.ShootID,
-                                transform.position,
-                                curCharTarget.transform.position,
-                                curMagicCast.ShootTime);
+        if (MyAction.onShootMagic != null)
+            MyAction.onShootMagic(curMagicCast.ShootID,
+                            transform.position,
+                            curCharTarget.transform.position,
+                            curMagicCast.ShootTime);
 
         yield return new WaitForSeconds(curMagicCast.ShootTime);
 
-        //cast logic
         MagicCastLogic(curMagicCast);
+
         isMagicMode = false;
 
         SetState(CharState.Idle);
+
         if (uiManager != null)
             uiManager.IsOnCurToggleMagic(false);
     }
 
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
-        if (vfxManager != null)
-            vfxManager.LoadMagic(curMagicCast.LoadID,
-                                transform.position,
-                                curMagicCast.LoadTime);
+        if (MyAction.onLoadMagic != null)
+            MyAction.onLoadMagic(curMagicCast.LoadID,
+                            transform.position,
+                            curMagicCast.LoadTime);
 
         yield return new WaitForSeconds(curMagicCast.LoadTime);
 

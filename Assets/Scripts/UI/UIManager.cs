@@ -194,6 +194,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject btnNotJoinParty;
 
+    [SerializeField]
+    private TMP_Text[] toggleAvatarLabels;
     public static UIManager instance;
 
 
@@ -213,7 +215,7 @@ public class UIManager : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             togglePauseUnpause.isOn = !togglePauseUnpause.isOn;
 
-        //UpdateToggleHPLabels();
+        UpdateToggleHPLabels();
     }
 
     public void ToggleAi(bool isOn)
@@ -883,6 +885,18 @@ public class UIManager : MonoBehaviour
     {
         curHeroToJoin = null;
         ToggleDialogueBox(false);
+    }
+
+    void UpdateToggleHPLabels()
+    {
+        for (int i = 0; i < toggleAvatar.Length; i++)
+        {
+            if (i < PartyManager.instance.Members.Count)
+            {
+                Character hero = PartyManager.instance.Members[i];
+                toggleAvatarLabels[i].text = $"{hero.CurHp}/ {hero.MaxHp}";
+            }
+        }
     }
 
 }
