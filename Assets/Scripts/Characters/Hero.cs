@@ -143,6 +143,36 @@ public class Hero : Character
 
             switch (level)
             {
+                case 1:
+                    if (MyAction.onCreateMagic != null)
+                    {
+                        magic = MyAction.onCreateMagic(0);
+                        magicSkills.Add(magic);
+                        uiManager.ShowMagicToggles();
+                    }
+
+                    if (MyAction.onCreateMagic != null)
+                    {
+                        magic = MyAction.onCreateMagic(1);
+                        magicSkills.Add(magic);
+                        uiManager.ShowMagicToggles();
+                    }
+
+                    if (MyAction.onCreateMagic != null)
+                    {
+                        magic = MyAction.onCreateMagic(2);
+                        magicSkills.Add(magic);
+                        uiManager.ShowMagicToggles();
+                    }
+
+                    if (MyAction.onCreateMagic != null)
+                    {
+                        magic = MyAction.onCreateMagic(3);
+                        magicSkills.Add(magic);
+                        uiManager.ShowMagicToggles();
+                    }
+                    break;
+
                 case 5:
                     if (MyAction.onCreateMagic != null)
                     {

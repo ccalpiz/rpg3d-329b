@@ -1400,12 +1400,12 @@ MonoBehaviour:
   exp: 0
   level: 1
   nextExp: 30
-  strength: 1
-  dexterity: 1
-  constitution: 1
-  intelligence: 1
-  wisdom: 1
-  charisma: 1
+  strength: 4
+  dexterity: 7
+  constitution: 5
+  intelligence: 9
+  wisdom: 7
+  charisma: 8
 --- !u!114 &4199622424573523100
 MonoBehaviour:
   m_ObjectHideFlags: 0
