@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f2115d0fa0e2c48a5ab1acbc2fb38c, type: 3}
-  m_Name: 005_MagicPotion
+  m_Name: 014_ShieldC
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  id: 5
-  itemName: MagicPotion
-  type: 0
-  icon: {fileID: 21300000, guid: 9db3be7438e65784bb6add3d2e9a65f3, type: 3}
-  power: 20
-  prefabID: 5
+  id: 14
+  itemName: ShieldC
+  type: 2
+  icon: {fileID: 21300000, guid: 481227b56a22bb045947662389f3e4f0, type: 3}
+  power: 14
+  prefabID: 3
   normalPrice: 90

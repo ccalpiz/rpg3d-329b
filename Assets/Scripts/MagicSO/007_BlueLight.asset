@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 007_BlueLight
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 7
-  magicName: Fire Ball
+  magicName: Blue Light
   icon: {fileID: 21300000, guid: 91bdefff87a099e48a691f29942e6cd9, type: 3}
   range: 20
   power: 20

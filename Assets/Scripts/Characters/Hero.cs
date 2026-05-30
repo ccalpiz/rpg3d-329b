@@ -147,26 +147,8 @@ public class Hero : Character
                     if (MyAction.onCreateMagic != null)
                     {
                         magic = MyAction.onCreateMagic(0);
-                        magicSkills.Add(magic);
-                        uiManager.ShowMagicToggles();
-                    }
-
-                    if (MyAction.onCreateMagic != null)
-                    {
                         magic = MyAction.onCreateMagic(1);
-                        magicSkills.Add(magic);
-                        uiManager.ShowMagicToggles();
-                    }
-
-                    if (MyAction.onCreateMagic != null)
-                    {
                         magic = MyAction.onCreateMagic(2);
-                        magicSkills.Add(magic);
-                        uiManager.ShowMagicToggles();
-                    }
-
-                    if (MyAction.onCreateMagic != null)
-                    {
                         magic = MyAction.onCreateMagic(3);
                         magicSkills.Add(magic);
                         uiManager.ShowMagicToggles();
@@ -176,15 +158,16 @@ public class Hero : Character
                 case 5:
                     if (MyAction.onCreateMagic != null)
                     {
-                        magic = MyAction.onCreateMagic(0);
+                        magic = MyAction.onCreateMagic(4);
                         magicSkills.Add(magic);
                         uiManager.ShowMagicToggles();
                     }
                     break;
+
                 case 10:
                     if (MyAction.onCreateMagic != null)
                     {
-                        magic = MyAction.onCreateMagic(1);
+                        magic = MyAction.onCreateMagic(5);
                         magicSkills.Add(magic);
                         uiManager.ShowMagicToggles();
                     }
@@ -193,5 +176,4 @@ public class Hero : Character
             // GiveMagicAtLevel(level);
         }
     }
-
 }

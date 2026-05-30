@@ -248,6 +248,7 @@ MonoBehaviour:
   heroPrefabs:
   - {fileID: 131680, guid: 0e99a009d6f41a54c974d6779a3ff06e, type: 3}
   - {fileID: 162860, guid: ac1b36ca580619f4b8c67b8b32830268, type: 3}
+  - {fileID: 131680, guid: decc19a51bcbebc42a0971c4d1d99e29, type: 3}
   curId: 0
 --- !u!1 &139861426
 GameObject:
