@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 16
   itemName: LegendaryShield
   type: 2
-  icon: {fileID: 21300000, guid: 0151c66716ccb8e46a31088b32cd8618, type: 3}
+  icon: {fileID: 21300000, guid: bafac54d4235d3242a3b8eb191b8bafd, type: 3}
   power: 85
   prefabID: 3
   normalPrice: 280
